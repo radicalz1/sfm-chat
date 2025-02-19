@@ -1,0 +1,22 @@
+.patient-list {
+  width: 250px;
+  background-color: #1e1e1e;
+  padding: 20px;
+  overflow-y: auto;
+}
+.patient-list h2 {
+  margin-bottom: 10px;
+}
+.patient-list ul {
+  list-style: none;
+  padding: 0;
+}
+.patient-list li {
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.patient-list li:hover {
+  background-color: #333;
+}
