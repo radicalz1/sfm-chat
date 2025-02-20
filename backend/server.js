@@ -28,11 +28,11 @@ mongoose.connect(MONGODB_URI, {
   .catch(err => console.error("MongoDB connection error:", err));
 
 // Import routes from separate route files
-const authRoutes = require('./backend/routes/auth');
-const chatRoutes = require('./backend/routes/chat');
-const fileRoutes = require('./backend/routes/file');
-const aiRoutes = require('./backend/routes/ai');
-const adminRoutes = require('./backend/routes/admin');
+const authRoutes = require('./routes/auth');
+const chatRoutes = require('./routes/chat');
+const fileRoutes = require('./routes/file');
+const aiRoutes = require('./routes/ai');
+const adminRoutes = require('./routes/admin');
 
 // Register API routes
 app.use('/api/auth', authRoutes);
