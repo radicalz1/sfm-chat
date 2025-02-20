@@ -1,6 +1,35 @@
 import React, { useState } from 'react';
 import './ChatWindow.css';
 
+// Example: login handler in patient-app using Fetch API:
+async function handleLogin(event) {
+  event.preventDefault();
+  const email = event.target.email.value;
+  const password = event.target.password.value;
+  
+  try {
+    const res = await fetch('https://your-backend-domain/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    
+    if (res.ok) {
+      // Save token (perhaps in localStorage) and update app state accordingly
+      localStorage.setItem('token', data.token);
+      // Continue to fetch patient/chat data using this token
+    } else {
+      // Handle authentication error
+      console.error('Login failed', data);
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+  }
+}
+
 function ChatWindow() {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
