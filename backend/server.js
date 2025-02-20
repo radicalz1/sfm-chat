@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // Connect to MongoDB (using the environment variable if set)
-const MONGODB_URI = mongodb+srv://radicalzsow:Uuq5MvlJtQz8VZZY@sfm-chat.c2cf8.mongodb.net/?retryWrites=true&w=majority&appName=sfm-chat;
+const MONGODB_URI = "mongodb+srv://radicalzsow:Uuq5MvlJtQz8VZZY@sfm-chat.c2cf8.mongodb.net/?retryWrites=true&w=majority&appName=sfm-chat";
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
