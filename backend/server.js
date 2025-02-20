@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Default route for testing
-app.get('/', (req, res) => {
+app.get('/backend/', (req, res) => {
   res.send("Hello from the WhatsApp Clone Backend!");
 });
 
@@ -28,11 +28,11 @@ mongoose.connect(MONGODB_URI, {
   .catch(err => console.error("MongoDB connection error:", err));
 
 // Import routes from separate route files
-const authRoutes = require('./routes/auth');
-const chatRoutes = require('./routes/chat');
-const fileRoutes = require('./routes/file');
-const aiRoutes = require('./routes/ai');
-const adminRoutes = require('./routes/admin');
+const authRoutes = require('./backend/routes/auth');
+const chatRoutes = require('./backend/routes/chat');
+const fileRoutes = require('./backend/routes/file');
+const aiRoutes = require('./backend/routes/ai');
+const adminRoutes = require('./backend/routes/admin');
 
 // Register API routes
 app.use('/api/auth', authRoutes);
