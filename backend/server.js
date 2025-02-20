@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -20,13 +19,16 @@ app.get('/', (req, res) => {
 // (Remember to set MONGODB_URI in your Vercel environment, or add a secret as needed.)
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/whatsapp_clone';
 
+// Suppress the Mongoose strictQuery deprecation warning
+mongoose.set('strictQuery', true); // Set to true for strict schema enforcement
+
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log("Connected to MongoDB"))
-.catch(err => console.error("MongoDB connection error:", err));
+  .then(() => console.log("Connected to MongoDB"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
 // Import API routes
 const authRoutes = require('./routes/auth');
@@ -35,12 +37,12 @@ const fileRoutes = require('./routes/file');
 const aiRoutes = require('./routes/ai');
 const adminRoutes = require('./routes/admin');
 
-// Mount routes on specific paths
+// Mount API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/chats', chatRoutes);
-app.use('/api/files', fileRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/file', fileRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Export the app as a serverless function handler so Vercel can deploy it properly.
-module.exports.handler = serverless(app);
+// Export the app wrapped with serverless-http for Vercel
+module.exports = serverless(app);
