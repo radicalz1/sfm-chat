@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Default route for testing
-app.get('/backend/', (req, res) => {
+app.get('/', (req, res) => {
   res.send("Hello from the WhatsApp Clone Backend!");
 });
 
